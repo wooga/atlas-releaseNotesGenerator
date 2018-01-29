@@ -1,5 +1,6 @@
 package wooga.gradle.releaseNotesGenerator
 
+import org.ajoberstar.gradle.git.release.base.BaseReleasePlugin
 import org.ajoberstar.gradle.git.release.base.ReleasePluginExtension
 import org.ajoberstar.grgit.Grgit
 import org.gradle.api.Plugin
@@ -30,6 +31,8 @@ class ReleaseNotesGeneratorPlugin implements Plugin<Project> {
 
         this.project = project
         this.tasks = project.tasks
+
+        project.pluginManager.apply(BaseReleasePlugin)
 
         ReleasePluginExtension releaseExtension = project.extensions.findByType(ReleasePluginExtension)
         createReleaseNoteTasks(releaseExtension.grgit)
