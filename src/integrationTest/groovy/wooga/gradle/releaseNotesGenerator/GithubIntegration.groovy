@@ -92,9 +92,11 @@ abstract class GithubIntegration extends IntegrationSpec {
     }
 
     def setup() {
+
         buildFile << """
-            ${applyPlugin(ReleasePlugin)}
+            ${applyPlugin(ReleaseNotesGeneratorPlugin)}
         """.stripIndent()
+
     }
 
     def cleanup() {

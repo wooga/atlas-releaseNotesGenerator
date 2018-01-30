@@ -1,8 +1,8 @@
 package wooga.gradle.releaseNotesGenerator
 
 import org.ajoberstar.gradle.git.release.base.BaseReleasePlugin
-import org.ajoberstar.gradle.git.release.base.ReleasePluginExtension
 import org.ajoberstar.grgit.Grgit
+import org.eclipse.jgit.errors.RepositoryNotFoundException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -10,6 +10,7 @@ import org.gradle.api.logging.Logger
 import org.gradle.api.logging.Logging
 import org.gradle.api.publish.plugins.PublishingPlugin
 import org.gradle.api.tasks.TaskContainer
+import wooga.gradle.github.GithubPlugin
 import wooga.gradle.github.publish.GithubPublish
 import wooga.gradle.github.publish.GithubPublishPlugin
 import wooga.gradle.releaseNotesGenerator.tasks.GenerateReleaseNotes
@@ -33,9 +34,20 @@ class ReleaseNotesGeneratorPlugin implements Plugin<Project> {
         this.tasks = project.tasks
 
         project.pluginManager.apply(BaseReleasePlugin)
+        project.pluginManager.apply(GithubPlugin)
 
-        ReleasePluginExtension releaseExtension = project.extensions.findByType(ReleasePluginExtension)
-        createReleaseNoteTasks(releaseExtension.grgit)
+        def gitRoot = project.hasProperty('git.root') ? project.property('git.root') : project.rootProject.projectDir
+
+        def git
+        try {
+            git = Grgit.open(dir: gitRoot)
+        }
+        catch(RepositoryNotFoundException e) {
+            logger.warn("Git repository not found at $gitRoot -- nebula-release tasks will not be available. Use the git.root Gradle property to specify a different directory.")
+            return
+        }
+
+        createReleaseNoteTasks(git)
     }
 
     void createReleaseNoteTasks(Grgit git) {
