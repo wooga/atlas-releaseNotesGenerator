@@ -36,10 +36,7 @@ pipeline {
                     post {
                         success {
                             gradleWrapper "jacocoTestReport coveralls"
-                        }
-
-                        always {
-                            publishHTML([
+			    publishHTML([
                                 allowMissing: true,
                                 alwaysLinkToLastBuild: true,
                                 keepAll: true,
@@ -47,10 +44,11 @@ pipeline {
                                 reportFiles: 'index.html',
                                 reportName: 'Coverage',
                                 reportTitles: ''
-                            ])
+                            ])	
+                        }
 
+                        always {
                             junit allowEmptyResults: true, testResults: 'build/test-results/**/*.xml'
-                            gradleWrapper "clean"
                         }
                     }
                 }
@@ -76,10 +74,7 @@ pipeline {
                     post {
                         success {
                             gradleWrapper "jacocoTestReport coveralls"
-                        }
-
-                        always {
-                            publishHTML([
+			    publishHTML([
                                 allowMissing: true,
                                 alwaysLinkToLastBuild: true,
                                 keepAll: true,
@@ -87,10 +82,11 @@ pipeline {
                                 reportFiles: 'index.html',
                                 reportName: 'Coverage',
                                 reportTitles: ''
-                            ])
+                            ])	
+                        }
 
+                        always {
                             junit allowEmptyResults: true, testResults: 'build/test-results/**/*.xml'
-                            gradleWrapper "clean"
                         }
                     }
                 }
