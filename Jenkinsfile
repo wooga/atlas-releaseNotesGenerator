@@ -24,6 +24,7 @@ pipeline {
                         COVERALLS_REPO_TOKEN    			= credentials('atlas_releaseNotesGenerator_coveralls_token')
                         TRAVIS_JOB_NUMBER       			= "${BUILD_NUMBER}.WIN"
                         UNITY_PATH              			= "${UNITY_2017_1_0_P_5_PATH}"
+						GITHUB                            	= credentials('github_integration')
                         ATLAS_GITHUB_INTEGRATION_USER     	= "${GITHUB_USR}"
                         ATLAS_GITHUB_INTEGRATION_PASSWORD 	= "${GITHUB_PSW}"
                     }
@@ -63,6 +64,7 @@ pipeline {
                         COVERALLS_REPO_TOKEN    			= credentials('atlas_releaseNotesGenerator_coveralls_token')
                         TRAVIS_JOB_NUMBER       			= "${BUILD_NUMBER}.MACOS"
                         UNITY_PATH              			= "${UNITY_2017_1_0_P_5_PATH}"
+						GITHUB                            	= credentials('github_integration')
                         ATLAS_GITHUB_INTEGRATION_USER     	= "${GITHUB_USR}"
 						ATLAS_GITHUB_INTEGRATION_PASSWORD 	= "${GITHUB_PSW}"
                     }
