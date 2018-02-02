@@ -9,8 +9,8 @@ atlas-releaseNotesGenerator
 [![GitHub release](https://img.shields.io/github/release/wooga/atlas-releaseNotesGenerator.svg?style=flat-square)]()
 
 
-Usage
--------------------
+Applying the plugin
+===================
 
 **build.gradle**
 ```groovy
@@ -18,6 +18,13 @@ plugins {
     id 'net.wooga.releaseNotesGenerator' version '0.1.0'
 }
 ```
+
+
+Documentation
+=============
+
+- [API docs](https://wooga.github.io/atlas-releaseNotesGenerator/docs/api/)
+- [Tasks](docs/Tasks.md)
 
 LICENSE
 =======
