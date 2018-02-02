@@ -17,8 +17,7 @@
  */
 
 plugins {
-    id 'nebula.release' version '5.0.0'
-    id 'net.wooga.plugins' version '0.1.1'
+    id 'net.wooga.plugins' version '0.3.0'
 }
 
 group 'net.wooga.gradle'
@@ -32,10 +31,14 @@ pluginBundle {
     plugins {
         releaseNotesGenerator {
             id = 'net.wooga.releaseNotesGenerator'
-            displayName = 'Github Release Notes Generator Unity plugin'
+            displayName = 'Github Release Notes Generator'
             description = 'This plugin generates release notes on project data provided by git/github'
         }
     }
+}
+
+github {
+    repositoryName = "wooga/atlas-releaseNotesGenerator"
 }
 
 dependencies {
