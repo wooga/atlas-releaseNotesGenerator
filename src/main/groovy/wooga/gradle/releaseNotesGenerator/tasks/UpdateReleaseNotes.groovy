@@ -27,7 +27,18 @@ import wooga.gradle.github.base.AbstractGithubTask
 import java.util.concurrent.Callable
 
 /**
- * A gradle task class which allows to update a <code>textfile<code> on github
+ * A gradle task class which allows to update a {@code releaseNotes} text file on github.
+ * The task is based on {@link AbstractGithubTask} so all properties apply here as well.
+ * <p>
+ * Example:
+ * <pre>
+ * {@code
+ *      task(updateReleaseNotes, type:wooga.gradle.releaseNotesGenerator.tasks.UpdateReleaseNotes) {
+ *          releaseNotes = file("path/to/release_notes.md")
+ *          commitMessage = "update"
+ *      }
+ * }
+ * </pre>
  */
 class UpdateReleaseNotes extends AbstractGithubTask {
 
@@ -40,7 +51,13 @@ class UpdateReleaseNotes extends AbstractGithubTask {
     }
 
     /**
-     * @return the file to update on github
+     * Returns the release notes file.
+     * <p>
+     * The content of this file will be written to a counterpart file on github.
+     * If the file doesn't exist on github it will be created.
+     * This task takes only the {@code master} branch into account.
+     *
+     * @return a file
      */
     @SkipWhenEmpty
     @InputFile
@@ -58,7 +75,10 @@ class UpdateReleaseNotes extends AbstractGithubTask {
     }
 
     /**
-     * @return The commit message to use for the update process
+     * Returns the commit message to use for the update process.
+     *
+     * @return the commit message
+     * @default "Update release notes"
      */
     @Optional
     @Input
@@ -72,11 +92,31 @@ class UpdateReleaseNotes extends AbstractGithubTask {
         }
     }
 
+    /**
+     * Sets the commit message to use for the update process.
+     * <p>
+     * The value can be any value {@code Object} or a {@code Closure}.
+     * If the value is a {@code Closure} object, it will be called in the getter and {@code toString} executed on the
+     * return value.
+     *
+     * @param commitMessage
+     * @return this
+     */
     UpdateReleaseNotes setCommitMessage(Object commitMessage) {
         this.commitMessage = commitMessage
         this
     }
 
+    /**
+     * Sets the commit message to use for the update process.
+     * <p>
+     * The value can be any value {@code Object} or a {@code Closure}.
+     * If the value is a {@code Closure} object, it will be called in the getter and {@code toString} executed on the
+     * return value.
+     *
+     * @param commitMessage
+     * @return this
+     */
     UpdateReleaseNotes commitMessage(Object commitMessage) {
         this.setCommitMessage(commitMessage)
     }

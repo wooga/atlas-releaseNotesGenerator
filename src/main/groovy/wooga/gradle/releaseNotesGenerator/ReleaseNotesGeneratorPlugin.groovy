@@ -27,13 +27,17 @@ import org.gradle.api.Task
 import org.gradle.api.logging.Logger
 import org.gradle.api.logging.Logging
 import org.gradle.api.publish.plugins.PublishingPlugin
-import org.gradle.api.tasks.TaskContainer
 import wooga.gradle.github.GithubPlugin
 import wooga.gradle.github.publish.GithubPublish
 import wooga.gradle.github.publish.GithubPublishPlugin
 import wooga.gradle.releaseNotesGenerator.tasks.GenerateReleaseNotes
 import wooga.gradle.releaseNotesGenerator.tasks.UpdateReleaseNotes
 
+/**
+ * A Wooga internal plugin to generate release notes for Unity library packages.
+ * This plugin is very opinionated. The release notes templates are static and the information parsed from github
+ * should be in a specified format.
+ */
 class ReleaseNotesGeneratorPlugin implements Plugin<Project> {
 
     static Logger logger = Logging.getLogger(ReleaseNotesGeneratorPlugin)
@@ -42,15 +46,8 @@ class ReleaseNotesGeneratorPlugin implements Plugin<Project> {
     static final String GENERATE_RELEASE_NOTES_TASK = "generateReleaseNotes"
     static final String UPDATE_RELEASE_NOTES_TASK = "updateReleaseNotes"
 
-    TaskContainer tasks
-    Project project
-
     @Override
     void apply(Project project) {
-
-        this.project = project
-        this.tasks = project.tasks
-
         project.pluginManager.apply(BaseReleasePlugin)
         project.pluginManager.apply(GithubPlugin)
 
@@ -61,17 +58,18 @@ class ReleaseNotesGeneratorPlugin implements Plugin<Project> {
             git = Grgit.open(dir: gitRoot)
         }
         catch(RepositoryNotFoundException e) {
-            logger.warn("Git repository not found at $gitRoot -- nebula-release tasks will not be available. Use the git.root Gradle property to specify a different directory.")
+            logger.warn("Git repository not found at $gitRoot -- Can't activate net.wooga.releaseNotesGenerator")
             return
         }
 
-        createReleaseNoteTasks(git)
+        createReleaseNoteTasks(project, git)
     }
 
-    void createReleaseNoteTasks(Grgit git) {
-        GithubPublish githubPublishTask = (GithubPublish) tasks.getByName(GithubPublishPlugin.PUBLISH_TASK_NAME)
+    private static void createReleaseNoteTasks(Project project, Grgit git) {
+        def tasks = project.tasks
+        def githubPublishTask = tasks.getByName(GithubPublishPlugin.PUBLISH_TASK_NAME) as GithubPublish
 
-        GenerateReleaseNotes appendLatestRelease = (GenerateReleaseNotes) tasks.create(APPEND_RELEASE_NOTES_TASK, GenerateReleaseNotes)
+        def appendLatestRelease = tasks.create(APPEND_RELEASE_NOTES_TASK, GenerateReleaseNotes)
         appendLatestRelease.appendLatestRelease(true)
 
         def generateReleaseNotes = tasks.create(GENERATE_RELEASE_NOTES_TASK, GenerateReleaseNotes)

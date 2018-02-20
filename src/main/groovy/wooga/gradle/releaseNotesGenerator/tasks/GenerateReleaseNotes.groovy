@@ -29,6 +29,29 @@ import wooga.gradle.releaseNotesGenerator.utils.ReleaseNotesGenerator
 
 import java.util.concurrent.Callable
 
+/**
+ * Generates opinionated release notes text from github release with pull requests and git commits content.
+ * <p>
+ * It uses the internal github client and fetch a sorted list of all Github releases
+ * on the configured repository.
+ * If the {@link #getAppendLatestRelease()} flag is set, it will use only the latest release.
+ * The list of releases will be converted into {@link ReleaseVersion} objects and passed to a {@link ReleaseNotesGenerator}.
+ * The result of the {@link #generateReleaseNotes()}
+ * will saved to the configured export file. ({@link ReleaseNotesGenerator#getReleaseNotes()}).
+ * <p>
+ * Example:
+ * <pre>
+ * {@code
+ *     task(updateReleaseNotes, type:wooga.gradle.releaseNotesGenerator.tasks.GenerateReleaseNotes) {
+ *          releaseNotes = file("path/to/release_notes.md")
+ *          appendLatestRelease = false
+ *     }
+ * }
+ * </pre>
+ *
+ * @see ReleaseNotesGenerator
+ * @see AbstractGithubTask
+ */
 class GenerateReleaseNotes extends AbstractGithubTask {
     private static final Logger logger = Logging.getLogger(GenerateReleaseNotes)
 
@@ -42,6 +65,17 @@ class GenerateReleaseNotes extends AbstractGithubTask {
         outputs.upToDateWhen { false }
     }
 
+    /**
+     * Returns a {@code Boolean} value indicating,
+     * if only the notes for the latest release should be generated and appended.
+     * <p>
+     * If the value is {@code false}, the release notes will be generated from all available github releases.
+     * If the value is {@code true}, only the release notes from the latest release will be generated and append to the
+     * release notes file.
+     *
+     * @return  {@code true} if release notes for latest release only should be generated and appended.
+     * @default false
+     */
     @Optional
     @Input
     Boolean getAppendLatestRelease() {
@@ -54,43 +88,114 @@ class GenerateReleaseNotes extends AbstractGithubTask {
         }
     }
 
-    GenerateReleaseNotes setAppendLatestRelease(Object releaseNotes) {
-        this.appendLatestRelease = releaseNotes
+    /**
+     * Sets the {@code Boolean} flag to indicate
+     * if only the notes for the latest release should be generated and appended.
+     *
+     * The value can be any value {@code Object} or a {@code Closure}.
+     * If the value is a {@code Closure} object, it will be called in the getter and {@code toBoolean} executed on the
+     * return value.
+     *
+     * @param isAppending {@code true} if release notes for latest release only should be generated and appended.
+     * @return this
+     */
+    GenerateReleaseNotes setAppendLatestRelease(Object isAppending) {
+        this.appendLatestRelease = isAppending
         this
     }
 
+    /**
+     * Sets the {@code Boolean} flag to indicate
+     * if only the notes for the latest release should be generated and appended.
+     *
+     * The value can be any value {@code Object} or a {@code Closure}.
+     * If the value is a {@code Closure} object, it will be called in the getter and {@code toBoolean} executed on the
+     * return value.
+     *
+     * @param isAppending {@code true} if release notes for latest release only should be generated and appended.
+     * @return this
+     */
     GenerateReleaseNotes appendLatestRelease(Object releaseNotes) {
         this.setAppendLatestRelease(releaseNotes)
     }
 
+    /**
+     * Returns the {@code File} where the generated release notes will be written to.
+     *
+     * @return the release notes file
+     */
     @OutputFile
     File getReleaseNotes() {
         project.file(releaseNotes)
     }
 
+    /**
+     * Sets the {@code File} where the generated release notes will be written to.
+     *
+     * @param releaseNotes the release notes file
+     * @return this
+     */
     GenerateReleaseNotes setReleaseNotes(Object releaseNotes) {
         this.releaseNotes = releaseNotes
         this
     }
 
+    /**
+     * Sets the {@code File} where the generated release notes will be written to.
+     *
+     * @param releaseNotes the release notes file
+     * @return this
+     */
     GenerateReleaseNotes releaseNotes(Object releaseNotes) {
         this.setReleaseNotes(releaseNotes)
     }
 
+    /**
+     * Returns the {@link Grgit} instance used to fetch commit logs and git tags.
+     *
+     * @return a {@link Grgit} instance
+     */
     @Internal
     Grgit getGit() {
         git
     }
 
+    /**
+     * Sets the {@link Grgit} instance used to fetch commit logs and git tags.
+     *
+     * @param git {@link Grgit} instance
+     * @return this
+     */
     GenerateReleaseNotes setGit(Grgit git) {
         this.git = git
         this
     }
 
+    /**
+     * Sets the {@link Grgit} instance used to fetch commit logs and git tags.
+     *
+     * @param git {@link Grgit} instance
+     * @return this
+     */
     GenerateReleaseNotes git(Grgit git) {
         this.setGit(git)
     }
 
+    /**
+     * Creates a {@link ReleaseVersion} object from a list of Github releases and an index.
+     * <p>
+     * The method fetches the release at index the previous release if available and constructs a {@link ReleaseVersion}
+     * object with the release {@code name} values.
+     * <p>
+     * <b>Note</b>
+     * By Wooga convention all releases are named after the version.
+     * This makes it easy to convert releases back into versions values.
+     *
+     * @param  index the index of the release to create the {@code ReleaseVersion} object for.
+     * @param  releases list of releases
+     * @return a {@link ReleaseVersion} with the release version fetched with index from release list and the previous release
+     * @see    ReleaseVersion
+     */
     @Internal
     protected ReleaseVersion releaseVersionForIndex(int index, List<GHRelease> releases) {
         if (releases.size() > index) {
