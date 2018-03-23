@@ -134,7 +134,7 @@ class ReleaseNoteBody {
         new Callable<List<PullRequest>>() {
             @Override
             List<PullRequest> call() throws Exception {
-                return pullrequests.findAll { it.labels.every { it.name != LABEL_MAJOR_CHANGE } }
+                return pullrequests.size() == 1 ? new ArrayList<PullRequest>() : pullrequests.findAll { it.labels.every { it.name != LABEL_MAJOR_CHANGE } }
             }
         }
     }
@@ -143,7 +143,7 @@ class ReleaseNoteBody {
         new Callable<List<PullRequest>>() {
             @Override
             List<PullRequest> call() throws Exception {
-                return pullrequests.findAll { it.labels.any { it.name == LABEL_MAJOR_CHANGE } }
+                return pullrequests.size() == 1 ? [pullrequests.first()] : pullrequests.findAll { it.labels.any { it.name == LABEL_MAJOR_CHANGE } }
             }
         }
     }

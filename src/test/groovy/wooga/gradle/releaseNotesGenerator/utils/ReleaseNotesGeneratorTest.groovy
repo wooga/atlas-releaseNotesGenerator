@@ -899,10 +899,24 @@ class ReleaseNotesGeneratorTest extends Specification {
         
         # [$versionB.version - $dateB](https://github.com/wooga/TestRepo/releases/tag/v$versionB.version) #
         
-        ## Changes ##
+        ## Major Changes ##
+
+        ### Pullrequest 1 ###
         
-        * [`#1`](https://github.com/wooga/TestRepo/pull/1) Pullrequest 1
+        #### Description
+        Yada Yada Yada Yada Yada
+        Yada Yada Yada Yada Yada
+        Yada Yada Yada Yada Yada
         
+        #### Changes
+        * ![ADD] some stuff
+        * ![REMOVE] some stuff
+        * ![FIX] some stuff
+        
+        Yada Yada Yada Yada Yada
+        Yada Yada Yada Yada Yada
+        Yada Yada Yada Yada Yada
+
         ## Dependencies ##
         
         ```bash
@@ -936,5 +950,76 @@ class ReleaseNotesGeneratorTest extends Specification {
         dateA = releaseDateA.format("dd MMMM yyyy")
         dateB = releaseDateB.format("dd MMMM yyyy")
         versions = [versionA, versionB]
+    }
+
+
+    def "creates full first release notes with a single pull request"() {
+        given: "a git log with a single pull request, commits and a tag"
+
+        git.commit(message: 'commit')
+        git.commit(message: 'commit (#1)')
+        git.tag.add(name: 'v1.0.0')
+
+        and: "mocked pull requests"
+        hub.getPullRequest(1) >> mockPullRequest(1)
+
+        and: "mocked releases"
+        mockRelease("1.0.0", releaseDateA)
+
+        when:
+        def notes = releaseNoteGenerator.generateReleaseNotes(versions, ReleaseNotesGenerator.Template.releaseNotes)
+
+        then:
+        notes.normalize() == ("""
+        # [$versionA.version - $dateA](https://github.com/wooga/TestRepo/releases/tag/v$versionA.version) #
+        
+        ## Major Changes ##
+
+        ### Pullrequest 1 ###
+        
+        #### Description
+        Yada Yada Yada Yada Yada
+        Yada Yada Yada Yada Yada
+        Yada Yada Yada Yada Yada
+        
+        #### Changes
+        * ![ADD] some stuff
+        * ![REMOVE] some stuff
+        * ![FIX] some stuff
+        
+        Yada Yada Yada Yada Yada
+        Yada Yada Yada Yada Yada
+        Yada Yada Yada Yada Yada
+
+        ## Dependencies ##
+        
+        ```bash
+        Wooga.TestDependency1 ~> 0.1.0
+        Wooga.TestDependency2 = 0.7
+        Wooga.TestDependency3 
+        Wooga.TestDependency4 master
+        Wooga.TestDependency4 > 1, <2
+        ```
+
+        ## How to install ##
+        
+        ```bash
+        # latest stable
+        nuget Wooga.Test ~> 1
+        # latest stable with only patch updates
+        nuget Wooga.Test ~> 1.0
+        # latest build from master
+        nuget Wooga.Test ~> 1 master
+        # latest build with release candidates
+        nuget Wooga.Test ~> 1 rc
+        ```
+        """.stripIndent() + TestContent.ICON_IDS).trim()
+
+        where:
+        versionA = new ReleaseVersion("1.0.0", null, false)
+        releaseDateA = new Date(2012, 8, 12)
+
+        dateA = releaseDateA.format("dd MMMM yyyy")
+        versions = [versionA]
     }
 }
