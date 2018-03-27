@@ -128,7 +128,8 @@ if (location.href.indexOf('is-external=true') == -1) {
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/utils/ReleaseNoteBody.html#additionalChanges()" title="Method in ReleaseNoteBody">additionalChanges()</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/utils/ReleaseNoteBody.html">ReleaseNoteBody</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html#appendLatestRelease(java.lang.Object)" title="Method in GenerateReleaseNotes">appendLatestRelease(Object)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html">GenerateReleaseNotes</a>
-</dt><dd> <div class="block"></div></dd>
+</dt><dd> <div class="block">Sets the <CODE>Boolean</CODE> flag to indicate
+ if only the notes for the latest release should be generated and appended.</div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/ReleaseNotesGeneratorPlugin.html#apply(org.gradle.api.Project)" title="Method in ReleaseNotesGeneratorPlugin">apply(Project)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/ReleaseNotesGeneratorPlugin.html">ReleaseNotesGeneratorPlugin</a>
 </dt><dd> <div class="block"></div></dd>
 </dl>
@@ -146,9 +147,7 @@ if (location.href.indexOf('is-external=true') == -1) {
 <dl>
 
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html#commitMessage(java.lang.Object)" title="Method in UpdateReleaseNotes">commitMessage(Object)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html">UpdateReleaseNotes</a>
-</dt><dd> <div class="block"></div></dd>
-<dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/ReleaseNotesGeneratorPlugin.html#createReleaseNoteTasks(org.ajoberstar.grgit.Grgit)" title="Method in ReleaseNotesGeneratorPlugin">createReleaseNoteTasks(Grgit)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/ReleaseNotesGeneratorPlugin.html">ReleaseNotesGeneratorPlugin</a>
-</dt><dd> <div class="block"></div></dd>
+</dt><dd> <div class="block">Sets the commit message to use for the update process.</div></dd>
 </dl>
 
     
@@ -184,30 +183,31 @@ if (location.href.indexOf('is-external=true') == -1) {
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html#generate()" title="Method in GenerateReleaseNotes">generate()</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html">GenerateReleaseNotes</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html" title="Class in wooga.gradle.releaseNotesGenerator.tasks">GenerateReleaseNotes</a></span> - Class in <a href="./wooga/gradle/releaseNotesGenerator/tasks/package-summary.html">wooga.gradle.releaseNotesGenerator.tasks</a>
-</dt><dd><div class="block"></div></dd>
+</dt><dd><div class="block">Generates opinionated release notes text from github release with pull requests and git commits content.</div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html#GenerateReleaseNotes()" title="Constructor in GenerateReleaseNotes">GenerateReleaseNotes()</a></span> - Constructor in <a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html">GenerateReleaseNotes</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/utils/ReleaseNotesGenerator.html#generateReleaseNotes(List<ReleaseVersion>, wooga.gradle.releaseNotesGenerator.utils.ReleaseNotesGenerator.Template)" title="Method in ReleaseNotesGenerator">generateReleaseNotes(List&lt;ReleaseVersion&gt;, ReleaseNotesGenerator.Template)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/utils/ReleaseNotesGenerator.html">ReleaseNotesGenerator</a>
 </dt><dd> <div class="block">Generates a release note body message with given <code>versions</code> and <code>Template</code>.
  </div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html#getAppendLatestRelease()" title="Method in GenerateReleaseNotes">getAppendLatestRelease()</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html">GenerateReleaseNotes</a>
-</dt><dd> <div class="block"></div></dd>
+</dt><dd> <div class="block">Returns a <CODE>Boolean</CODE> value indicating,
+ if only the notes for the latest release should be generated and appended.</div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/utils/ReleaseBodyStrategy.html#getBody(org.kohsuke.github.GHRepository)" title="Method in ReleaseBodyStrategy">getBody(GHRepository)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/utils/ReleaseBodyStrategy.html">ReleaseBodyStrategy</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html#getCommitMessage()" title="Method in UpdateReleaseNotes">getCommitMessage()</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html">UpdateReleaseNotes</a>
-</dt><dd> <div class="block">@return The commit message to use for the update process</div></dd>
+</dt><dd> <div class="block">Returns the commit message to use for the update process.</div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/utils/PaketTemplateReader.html#getDependencies()" title="Method in PaketTemplateReader">getDependencies()</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/utils/PaketTemplateReader.html">PaketTemplateReader</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html#getGit()" title="Method in GenerateReleaseNotes">getGit()</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html">GenerateReleaseNotes</a>
-</dt><dd> <div class="block"></div></dd>
+</dt><dd> <div class="block">Returns the org.ajoberstar.grgit.Grgit instance used to fetch commit logs and git tags.</div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/utils/PaketTemplateReader.html#getPackageId()" title="Method in PaketTemplateReader">getPackageId()</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/utils/PaketTemplateReader.html">PaketTemplateReader</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html#getReleaseNotes()" title="Method in GenerateReleaseNotes">getReleaseNotes()</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html">GenerateReleaseNotes</a>
-</dt><dd> <div class="block"></div></dd>
+</dt><dd> <div class="block">Returns the <CODE>File</CODE> where the generated release notes will be written to.</div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html#getReleaseNotes()" title="Method in UpdateReleaseNotes">getReleaseNotes()</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html">UpdateReleaseNotes</a>
-</dt><dd> <div class="block">@return the file to update on github</div></dd>
+</dt><dd> <div class="block">Returns the release notes file.</div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html#git(org.ajoberstar.grgit.Grgit)" title="Method in GenerateReleaseNotes">git(Grgit)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html">GenerateReleaseNotes</a>
-</dt><dd> <div class="block"></div></dd>
+</dt><dd> <div class="block">Sets the org.ajoberstar.grgit.Grgit instance used to fetch commit logs and git tags.</div></dd>
 </dl>
 
     
@@ -322,7 +322,7 @@ if (location.href.indexOf('is-external=true') == -1) {
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/utils/ReleaseNotesGenerator.html#releaseNoteBodyFromVersion(org.ajoberstar.gradle.git.release.base.ReleaseVersion)" title="Method in ReleaseNotesGenerator">releaseNoteBodyFromVersion(ReleaseVersion)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/utils/ReleaseNotesGenerator.html">ReleaseNotesGenerator</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html#releaseNotes(java.lang.Object)" title="Method in GenerateReleaseNotes">releaseNotes(Object)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html">GenerateReleaseNotes</a>
-</dt><dd> <div class="block"></div></dd>
+</dt><dd> <div class="block">Sets the <CODE>File</CODE> where the generated release notes will be written to.</div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html#releaseNotes(java.lang.Object)" title="Method in UpdateReleaseNotes">releaseNotes(Object)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html">UpdateReleaseNotes</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/utils/ReleaseNotesGenerator.html" title="Class in wooga.gradle.releaseNotesGenerator.utils">ReleaseNotesGenerator</a></span> - Class in <a href="./wooga/gradle/releaseNotesGenerator/utils/package-summary.html">wooga.gradle.releaseNotesGenerator.utils</a>
@@ -332,9 +332,10 @@ if (location.href.indexOf('is-external=true') == -1) {
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/utils/ReleaseNotesGenerator.html#ReleaseNotesGenerator(org.ajoberstar.grgit.Grgit, org.kohsuke.github.GHRepository, java.lang.String)" title="Constructor in ReleaseNotesGenerator">ReleaseNotesGenerator(Grgit, GHRepository, String)</a></span> - Constructor in <a href="wooga/gradle/releaseNotesGenerator/utils/ReleaseNotesGenerator.html">ReleaseNotesGenerator</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/ReleaseNotesGeneratorPlugin.html" title="Class in wooga.gradle.releaseNotesGenerator">ReleaseNotesGeneratorPlugin</a></span> - Class in <a href="./wooga/gradle/releaseNotesGenerator/package-summary.html">wooga.gradle.releaseNotesGenerator</a>
-</dt><dd><div class="block"></div></dd>
+</dt><dd><div class="block">A Wooga internal plugin to generate release notes for Unity library packages.
+ </div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html#releaseVersionForIndex(int, List<GHRelease>)" title="Method in GenerateReleaseNotes">releaseVersionForIndex(int, List&lt;GHRelease&gt;)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html">GenerateReleaseNotes</a>
-</dt><dd> <div class="block"></div></dd>
+</dt><dd> <div class="block">Creates a org.ajoberstar.gradle.git.release.base.ReleaseVersion object from a list of Github releases and an index.</div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/utils/ReleaseNotesGenerator.html#render(wooga.gradle.releaseNotesGenerator.utils.ReleaseNoteBodies, wooga.gradle.releaseNotesGenerator.utils.ReleaseNotesGenerator.Template)" title="Method in ReleaseNotesGenerator">render(ReleaseNoteBodies, ReleaseNotesGenerator.Template)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/utils/ReleaseNotesGenerator.html">ReleaseNotesGenerator</a>
 </dt><dd> <div class="block"></div></dd>
 </dl>
@@ -345,13 +346,14 @@ if (location.href.indexOf('is-external=true') == -1) {
 <dl>
 
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html#setAppendLatestRelease(java.lang.Object)" title="Method in GenerateReleaseNotes">setAppendLatestRelease(Object)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html">GenerateReleaseNotes</a>
-</dt><dd> <div class="block"></div></dd>
+</dt><dd> <div class="block">Sets the <CODE>Boolean</CODE> flag to indicate
+ if only the notes for the latest release should be generated and appended.</div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html#setCommitMessage(java.lang.Object)" title="Method in UpdateReleaseNotes">setCommitMessage(Object)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html">UpdateReleaseNotes</a>
-</dt><dd> <div class="block"></div></dd>
+</dt><dd> <div class="block">Sets the commit message to use for the update process.</div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html#setGit(org.ajoberstar.grgit.Grgit)" title="Method in GenerateReleaseNotes">setGit(Grgit)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html">GenerateReleaseNotes</a>
-</dt><dd> <div class="block"></div></dd>
+</dt><dd> <div class="block">Sets the org.ajoberstar.grgit.Grgit instance used to fetch commit logs and git tags.</div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html#setReleaseNotes(java.lang.Object)" title="Method in GenerateReleaseNotes">setReleaseNotes(Object)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/GenerateReleaseNotes.html">GenerateReleaseNotes</a>
-</dt><dd> <div class="block"></div></dd>
+</dt><dd> <div class="block">Sets the <CODE>File</CODE> where the generated release notes will be written to.</div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html#setReleaseNotes(java.lang.Object)" title="Method in UpdateReleaseNotes">setReleaseNotes(Object)</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html">UpdateReleaseNotes</a>
 </dt><dd> <div class="block"></div></dd>
 </dl>
@@ -373,7 +375,8 @@ if (location.href.indexOf('is-external=true') == -1) {
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html#update()" title="Method in UpdateReleaseNotes">update()</a></span> - Method in <a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html">UpdateReleaseNotes</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html" title="Class in wooga.gradle.releaseNotesGenerator.tasks">UpdateReleaseNotes</a></span> - Class in <a href="./wooga/gradle/releaseNotesGenerator/tasks/package-summary.html">wooga.gradle.releaseNotesGenerator.tasks</a>
-</dt><dd><div class="block">A gradle task class which allows to update a <code>textfile<code> on github</div></dd>
+</dt><dd><div class="block">A gradle task class which allows to update a <CODE>releaseNotes</CODE> text file on github.
+ </div></dd>
 <dt><span class="strong"><a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html#UpdateReleaseNotes()" title="Constructor in UpdateReleaseNotes">UpdateReleaseNotes()</a></span> - Constructor in <a href="wooga/gradle/releaseNotesGenerator/tasks/UpdateReleaseNotes.html">UpdateReleaseNotes</a>
 </dt><dd> <div class="block"></div></dd>
 </dl>

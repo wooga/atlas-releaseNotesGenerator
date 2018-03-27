@@ -111,6 +111,11 @@ extends java.lang.Object
 
 
 
+    <p> A Wooga internal plugin to generate release notes for Unity library packages.
+ This plugin is very opinionated. The release notes templates are static and the information parsed from github
+ should be in a specified format.
+ </p>
+
           </li>
     </ul>
 </div>
@@ -159,16 +164,6 @@ extends java.lang.Object
                             <td class="colLast"><code><a href="#logger">logger</a></code><br></td>
                         </tr>
                         
-                        <tr class="altColor">
-                            <td class="colFirst"><code><strong>org.gradle.api.Project</strong></code>&nbsp;</td>
-                            <td class="colLast"><code><a href="#project">project</a></code><br></td>
-                        </tr>
-                        
-                        <tr class="rowColor">
-                            <td class="colFirst"><code><strong>org.gradle.api.tasks.TaskContainer</strong></code>&nbsp;</td>
-                            <td class="colLast"><code><a href="#tasks">tasks</a></code><br></td>
-                        </tr>
-                        
                     </table>
                    </ul>
                 </li>
@@ -199,12 +194,6 @@ extends java.lang.Object
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>void</code></td>
                             <td class="colLast"><code><strong><a href="#apply(org.gradle.api.Project)">apply</a></strong>(org.gradle.api.Project project)</code><br></td>
-                        </tr>
-                        
-                        <tr class="rowColor">
-                            <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>void</code></td>
-                            <td class="colLast"><code><strong><a href="#createReleaseNoteTasks(org.ajoberstar.grgit.Grgit)">createReleaseNoteTasks</a></strong>(org.ajoberstar.grgit.Grgit git)</code><br></td>
                         </tr>
                         
                     </table>
@@ -282,22 +271,6 @@ extends java.lang.Object
                             </li>
                         </ul>
                     
-                        <a name="project"><!-- --></a>
-                        <ul class="blockListLast">
-                            <li class="blockList">
-                                <h4>org.gradle.api.Project <strong>project</strong></h4>
-                                <p></p>
-                            </li>
-                        </ul>
-                    
-                        <a name="tasks"><!-- --></a>
-                        <ul class="blockListLast">
-                            <li class="blockList">
-                                <h4>org.gradle.api.tasks.TaskContainer <strong>tasks</strong></h4>
-                                <p></p>
-                            </li>
-                        </ul>
-                    
                 </li>
             </ul>
             
@@ -320,14 +293,6 @@ extends java.lang.Object
                             <li class="blockList">
                                 <h4>@java.lang.Override
 void <strong>apply</strong>(org.gradle.api.Project project)</h4>
-                                <p></p>
-                            </li>
-                        </ul>
-                    
-                        <a name="createReleaseNoteTasks(org.ajoberstar.grgit.Grgit)"><!-- --></a>
-                        <ul class="blockListLast">
-                            <li class="blockList">
-                                <h4>void <strong>createReleaseNoteTasks</strong>(org.ajoberstar.grgit.Grgit git)</h4>
                                 <p></p>
                             </li>
                         </ul>
