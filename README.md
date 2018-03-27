@@ -26,6 +26,10 @@ Documentation
 - [API docs](https://wooga.github.io/atlas-releaseNotesGenerator/docs/api/)
 - [Tasks](docs/Tasks.md)
 
+Development
+===========
+[Code of Conduct](docs/Code-of-conduct.md)
+
 LICENSE
 =======
 

@@ -22,7 +22,7 @@ import org.gradle.api.tasks.*
 import org.kohsuke.github.GHCommit
 import org.kohsuke.github.GHContent
 import org.kohsuke.github.GHFileNotFoundException
-import wooga.gradle.github.base.AbstractGithubTask
+import wooga.gradle.github.base.tasks.internal.AbstractGithubTask
 
 import java.util.concurrent.Callable
 

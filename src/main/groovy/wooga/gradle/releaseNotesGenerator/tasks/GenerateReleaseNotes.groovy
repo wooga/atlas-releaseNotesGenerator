@@ -24,7 +24,7 @@ import org.gradle.api.logging.Logger
 import org.gradle.api.logging.Logging
 import org.gradle.api.tasks.*
 import org.kohsuke.github.GHRelease
-import wooga.gradle.github.base.AbstractGithubTask
+import wooga.gradle.github.base.tasks.internal.AbstractGithubTask
 import wooga.gradle.releaseNotesGenerator.utils.ReleaseNotesGenerator
 
 import java.util.concurrent.Callable

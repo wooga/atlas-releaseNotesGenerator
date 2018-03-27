@@ -28,7 +28,7 @@ import org.gradle.api.logging.Logger
 import org.gradle.api.logging.Logging
 import org.gradle.api.publish.plugins.PublishingPlugin
 import wooga.gradle.github.GithubPlugin
-import wooga.gradle.github.publish.GithubPublish
+import wooga.gradle.github.publish.tasks.GithubPublish
 import wooga.gradle.github.publish.GithubPublishPlugin
 import wooga.gradle.releaseNotesGenerator.tasks.GenerateReleaseNotes
 import wooga.gradle.releaseNotesGenerator.tasks.UpdateReleaseNotes
