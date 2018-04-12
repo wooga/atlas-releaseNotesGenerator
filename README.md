@@ -15,7 +15,7 @@ Applying the plugin
 **build.gradle**
 ```groovy
 plugins {
-    id 'net.wooga.releaseNotesGenerator' version '1.0.0'
+    id 'net.wooga.releaseNotesGenerator' version '1.0.1'
 }
 ```
 
