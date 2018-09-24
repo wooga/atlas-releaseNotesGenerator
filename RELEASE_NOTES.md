@@ -1,3 +1,11 @@
+### 1.2.0 - Sep 24 2018
+
+* ![UPDATE] `net.wooga.plugins` to 1.2.0
+
+### 1.0.1 - Apr 12 2018
+
+* ![UPDATE] mustache dependency
+
 ### 1.0.0 - Mar 27 2018
 
 * ![NEW] stable major release
