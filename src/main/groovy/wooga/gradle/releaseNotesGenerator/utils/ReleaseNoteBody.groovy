@@ -79,11 +79,13 @@ class ReleaseNoteBody {
 
             def changes = body.readLines().findAll { it.trim().startsWith("* ![") }
             changeList = changes.collect {
-                def match = (it =~ /\!\[(.*?)\] (.*)/)
-                String category = match[0][1].toString()
-                String text = match[0][2].toString()
-                new ChangeNote(category, text)
-            }
+                def match = (it =~ /\!\[(.*?)\] (.+)/)
+                if (match) {
+                    String category = match[0][1].toString()
+                    String text = match[0][2].toString()
+                    new ChangeNote(category, text)
+                }
+            } - null
         }
     }
 
