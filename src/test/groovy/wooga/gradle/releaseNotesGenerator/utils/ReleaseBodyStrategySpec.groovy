@@ -35,7 +35,7 @@ class ReleaseBodyStrategySpec extends Specification {
     GHRepository repository
     ReleaseVersion version
 
-    def mockPullRequest(int number, Boolean changeSet = true) {
+    def mockPullRequest(int number, Boolean malformedChangeSet = false) {
         def bodyOut = new StringBuilder()
 
         bodyOut << """
@@ -45,18 +45,25 @@ class ReleaseBodyStrategySpec extends Specification {
         Yada Yada Yada Yada Yada
         """.stripIndent()
 
-        if (changeSet) {
+        if (malformedChangeSet) {
+            bodyOut << """
+            ## Changes
+            * ![ADD]change description without delimiter
+            """.stripIndent()
+        } else {
             bodyOut << """
             ## Changes
             * ![ADD] some stuff
             * ![REMOVE] some stuff
             * ![FIX] some stuff
-            
-            Yada Yada Yada Yada Yada
-            Yada Yada Yada Yada Yada
-            Yada Yada Yada Yada Yada
             """.stripIndent()
         }
+
+        bodyOut << """
+        Yada Yada Yada Yada Yada
+        Yada Yada Yada Yada Yada
+        Yada Yada Yada Yada Yada
+        """.stripIndent()
 
         def pr = Mock(GHPullRequest)
         pr.body >> bodyOut.toString()
@@ -91,12 +98,14 @@ class ReleaseBodyStrategySpec extends Specification {
         git.commit(message: 'commit')
         git.commit(message: 'commit (#2)')
         git.commit(message: 'commit (#3)')
+        git.commit(message: 'commit (#4)')
         git.commit(message: 'commit')
 
         and: "mocked pull requests"
         repository.getPullRequest(1) >> mockPullRequest(1)
         repository.getPullRequest(2) >> mockPullRequest(2)
         repository.getPullRequest(3) >> mockPullRequest(3)
+        repository.getPullRequest(4) >> mockPullRequest(4, true)
 
         when:
         def body = releaseBodyStrategy.getBody(repository)
